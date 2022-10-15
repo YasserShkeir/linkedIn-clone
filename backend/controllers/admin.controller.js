@@ -7,7 +7,7 @@ const deleteUser = async (req, res) => {
   if (!user) return res.status(404).json({ message: "Can't Find User" });
 
   user.delete();
-  return res.status(200).json({ message: "User Deleted" });
+  res.status(200).json({ message: "User Deleted" });
 };
 
 module.exports = {
