@@ -35,9 +35,49 @@ const followEmployer = async (req, res) => {
 };
 
 const searchJobs = async (req, res) => {
-  const { keyword, remote, easyApply, date } = req.body;
+  const { keyword, remote, easyApply, daysCount } = req.body;
+
+  if (!daysCount) {
+    daysCount = 10;
+  }
+
+  let pipeline = [
+    {
+      $search: {
+        index: "jobIndex",
+        text: {
+          query: keyword,
+          path: {
+            wildcard: "*",
+          },
+        },
+      },
+    },
+    {
+      $match: {
+        date: {
+          $gte: new Date(new Date() - daysCount * 60 * 60 * 24 * 1000),
+        },
+      },
+    },
+  ];
+
+  if (remote != null) {
+    pipeline.push({
+      $match: { remote: remote },
+    });
+  }
+
+  if (easyApply != null) {
+    pipeline.push({
+      $match: { easyApply: easyApply },
+    });
+  }
+
+  res.status(200).json({ message: await Job.aggregate(pipeline) });
 };
 
 module.exports = {
   followEmployer,
+  searchJobs,
 };
