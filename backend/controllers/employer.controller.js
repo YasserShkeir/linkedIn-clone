@@ -25,13 +25,19 @@ const createJob = async (req, res) => {
 
     console.log(employer.followedBy);
 
-    // client.messages
-    //   .create({
-    //     from: `whatsapp:+14155238886`,
-    //     body: `Hi! ${employer.name} just posted a job: ${title}`,
-    //     to: "whatsapp:+96181758391",
-    //   })
-    //   .then((message) => console.log("test: ", message.sid));
+    // ** ** ** ** ACTIVATE ONLY WHEN DONE ** ** ** **
+
+    // employer.followedBy.forEach(async (element) => {
+    //   let user = await User.findById(element);
+    //   console.log(user.name, user.phone);
+    //   client.messages
+    //     .create({
+    //       from: `whatsapp:+14155238886`,
+    //       body: `Hi ${user.name}! ${employer.name} just posted a job: ${title}`,
+    //       to: `whatsapp:${user.phone}`,
+    //     })
+    //     .then((message) => console.log("test: ", message.sid));
+    // });
 
     // await job.save();
     res.status(200).json({ message: "Job Added Successfully" });
