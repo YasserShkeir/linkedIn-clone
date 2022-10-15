@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// Database linked successfully to cloud
 mongoose
   .connect(process.env.DATABASE_URL)
   .then(() => {
