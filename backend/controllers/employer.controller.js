@@ -2,7 +2,7 @@ const User = require("../models/users.model");
 const Job = require("../models/jobs.model");
 
 const createJob = async (req, res) => {
-  const { title, location, remote, easyApply, text } = req.body;
+  const { title, location, remote, easyApply, text, date } = req.body;
 
   try {
     const job = new Job();
@@ -14,9 +14,10 @@ const createJob = async (req, res) => {
     job.remote = remote;
     job.easyApply = easyApply;
     job.text = text;
+    job.date = date;
 
     await job.save();
-    res.status(200).json(job);
+    res.status(200).json({ message: "Job Added Successfully" });
   } catch (err) {
     res.status(400).json({
       message: err.message,

@@ -25,6 +25,10 @@ const jobSchema = new mongoose.Schema({
     type: String,
     required: "Text is required",
   },
+  date: {
+    type: Date,
+    required: "Due date is required",
+  },
 });
 
 const Job = mongoose.model("Job", jobSchema);
