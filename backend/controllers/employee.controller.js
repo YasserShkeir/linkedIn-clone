@@ -34,6 +34,10 @@ const followEmployer = async (req, res) => {
   }
 };
 
+const searchJobs = async (req, res) => {
+  const { keyword, remote, easyApply, date } = req.body;
+};
+
 module.exports = {
   followEmployer,
 };

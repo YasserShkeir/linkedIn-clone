@@ -23,8 +23,6 @@ const createJob = async (req, res) => {
     job.date = date;
     job.applicants = [];
 
-    console.log(employer.followedBy);
-
     // ** ** ** ** ACTIVATE ONLY WHEN DONE ** ** ** **
 
     // employer.followedBy.forEach(async (element) => {
@@ -39,7 +37,7 @@ const createJob = async (req, res) => {
     //     .then((message) => console.log("test: ", message.sid));
     // });
 
-    // await job.save();
+    await job.save();
     res.status(200).json({ message: "Job Added Successfully" });
   } catch (err) {
     res.status(400).json({

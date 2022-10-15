@@ -23,11 +23,12 @@ const login = async (req, res) => {
 };
 
 const signup = async (req, res) => {
-  const { name, email, password, userType } = req.body;
+  const { name, email, phone, password, userType } = req.body;
   try {
     const user = new User();
     user.name = name;
     user.email = email;
+    user.phone = phone;
     user.password = await bcrypt.hash(password, 10);
     user.userType = userType;
 
