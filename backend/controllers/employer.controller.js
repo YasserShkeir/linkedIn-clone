@@ -26,6 +26,16 @@ const createJob = async (req, res) => {
   }
 };
 
+const getApplicants = async (req, res) => {
+  const { id } = req.body;
+  const jobApplicants = await Job.findById(id);
+  if (!jobApplicants)
+    return res.status(404).json({ message: "Can't Find Job" });
+
+  res.status(200).json({ Applicants: jobApplicants.applicants });
+};
+
 module.exports = {
   createJob,
+  getApplicants,
 };
