@@ -7,8 +7,6 @@ const login = async (req, res) => {
 
   const user = await User.findOne({ email }).select("+password");
 
-  console.log(req.body);
-
   if (!user) return res.status(404).json({ message: "Invalid Credentials" });
 
   const isMatch = bcrypt.compare(password, user.password);
