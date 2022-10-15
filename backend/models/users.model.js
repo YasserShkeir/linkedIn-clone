@@ -19,6 +19,12 @@ const userSchema = new mongoose.Schema({
     type: Number,
     required: "User Type is required",
   },
+  follows: {
+    type: Array,
+  },
+  followedBy: {
+    type: Array,
+  },
 });
 
 const User = mongoose.model("User", userSchema);
