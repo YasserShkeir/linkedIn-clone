@@ -1,3 +1,8 @@
+require("dotenv").config();
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const client = require("twilio")(accountSid, authToken);
+
 const User = require("../models/users.model");
 const Job = require("../models/jobs.model");
 
@@ -20,6 +25,15 @@ const createJob = async (req, res) => {
 
     console.log(employer.followedBy);
 
+    // client.messages
+    //   .create({
+    //     from: `whatsapp:+14155238886`,
+    //     body: `Hi! ${employer.name} just posted a job: ${title}`,
+    //     to: "whatsapp:+96181758391",
+    //   })
+    //   .then((message) => console.log("test: ", message.sid));
+
+    // await job.save();
     res.status(200).json({ message: "Job Added Successfully" });
   } catch (err) {
     res.status(400).json({
