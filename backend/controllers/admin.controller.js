@@ -10,6 +10,12 @@ const deleteUser = async (req, res) => {
   res.status(200).json({ message: "User Deleted" });
 };
 
+const showme = async (req, res) => {
+  const user = req.user;
+  res.status(200).json({ user: user.name });
+};
+
 module.exports = {
   deleteUser,
+  showme,
 };

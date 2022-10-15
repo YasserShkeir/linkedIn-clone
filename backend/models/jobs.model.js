@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const User = require("../models/users.model");
 
 const jobSchema = new mongoose.Schema({
   title: {
@@ -7,7 +6,7 @@ const jobSchema = new mongoose.Schema({
     required: "Title is required",
   },
   employer: {
-    type: User,
+    type: String,
     required: "Employer is required",
   },
   location: {
