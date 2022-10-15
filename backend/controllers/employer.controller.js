@@ -18,7 +18,8 @@ const createJob = async (req, res) => {
     job.date = date;
     job.applicants = [];
 
-    await job.save();
+    console.log(employer.followedBy);
+
     res.status(200).json({ message: "Job Added Successfully" });
   } catch (err) {
     res.status(400).json({

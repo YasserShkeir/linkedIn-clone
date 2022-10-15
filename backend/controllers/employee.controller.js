@@ -4,6 +4,8 @@ const Follow = require("../models/follows.model");
 
 const followEmployer = async (req, res) => {
   const { employerID } = req.body;
+  const employer = await User.findById(employerID);
+  console.log(employer.followedBy);
   const follower = await User.findById(req.user._id.toString());
 
   try {
@@ -18,9 +20,11 @@ const followEmployer = async (req, res) => {
     follow.employerID = employerID;
 
     follower.follows.push(employerID);
+    employer.followedBy.push(followerID);
 
     await follow.save();
     await follower.save();
+    await employer.save();
 
     res.status(200).json({ message: "Successfully Followed" });
   } catch (err) {
