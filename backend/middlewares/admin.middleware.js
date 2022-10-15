@@ -1,5 +1,4 @@
 const adminMiddleware = async (req, res, next) => {
-  console.log(req.user.userType === 1);
   if (req.user.userType === 1) {
     next();
   } else {
