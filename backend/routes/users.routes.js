@@ -15,6 +15,11 @@ router.post("/deleteUser", authMiddleware, adminMiddleware, deleteUser);
 router.post("/showme", authMiddleware, adminMiddleware, showme);
 
 router.post("/createJob", authMiddleware, employerMiddleware, createJob);
-router.get("/getApplicants", authMiddleware, employerMiddleware, getApplicants);
+router.get(
+  "/getApplicants/:id",
+  authMiddleware,
+  employerMiddleware,
+  getApplicants
+);
 
 module.exports = router;

@@ -10,6 +10,7 @@ const createJob = async (req, res) => {
 
     job.title = title;
     job.employer = employer.name;
+    job.employerID = employer._id.toString();
     job.location = location;
     job.remote = remote;
     job.easyApply = easyApply;
@@ -27,12 +28,16 @@ const createJob = async (req, res) => {
 };
 
 const getApplicants = async (req, res) => {
-  const { id } = req.body;
-  const jobApplicants = await Job.findById(id);
-  if (!jobApplicants)
-    return res.status(404).json({ message: "Can't Find Job" });
+  const id = req.params.id;
+  const employer = req.user;
+  const job = await Job.findById(id);
+  if (!job) return res.status(404).json({ message: "Can't Find Job" });
 
-  res.status(200).json({ Applicants: jobApplicants.applicants });
+  if (job.employerID != employer._id) {
+    return res.status(404).json({ message: "Can't Access Applicants" });
+  }
+
+  res.status(200).json({ Applicants: job.applicants, Employer: employer.name });
 };
 
 module.exports = {
