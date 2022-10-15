@@ -4,6 +4,7 @@ const {
   createJob,
   getApplicants,
 } = require("../controllers/employer.controller");
+const { followEmployer } = require("../controllers/employee.controller");
 const authMiddleware = require("../middlewares/auth.middleware");
 const adminMiddleware = require("../middlewares/admin.middleware");
 const employerMiddleware = require("../middlewares/employer.middleware");
@@ -20,6 +21,13 @@ router.get(
   authMiddleware,
   employerMiddleware,
   getApplicants
+);
+
+router.post(
+  "/followEmployer",
+  authMiddleware,
+  employeeMiddleware,
+  followEmployer
 );
 
 module.exports = router;
