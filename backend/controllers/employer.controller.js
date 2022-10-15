@@ -15,6 +15,7 @@ const createJob = async (req, res) => {
     job.easyApply = easyApply;
     job.text = text;
     job.date = date;
+    job.applicants = [];
 
     await job.save();
     res.status(200).json({ message: "Job Added Successfully" });

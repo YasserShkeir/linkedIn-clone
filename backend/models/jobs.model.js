@@ -29,6 +29,9 @@ const jobSchema = new mongoose.Schema({
     type: Date,
     required: "Due date is required",
   },
+  applicants: {
+    type: Array,
+  },
 });
 
 const Job = mongoose.model("Job", jobSchema);
