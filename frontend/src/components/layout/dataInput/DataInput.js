@@ -6,6 +6,7 @@ const DataInput = ({ type = "text", label, id, res }) => {
 
   function handleChange(e) {
     setValue(e.target.value);
+    res = value;
   }
 
   return (
