@@ -12,3 +12,11 @@
   min-height: 35px;
   margin: 5px 5px;
 }
+
+.smallBtn {
+  width: fit-content;
+  font-weight: 500;
+  font-size: 0.9rem;
+  height: 30px;
+  min-height: 25px;
+}

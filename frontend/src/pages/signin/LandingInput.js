@@ -35,8 +35,8 @@ const LandingInput = ({ state }) => {
         <DataInput type="email" label="Email" id="signUpEmail" />
         <DataInput type="tel" label="Phone Number" id="signUpPhone" />
         <select>
-          <option>Looking for Jobs</option>
-          <option>Looking for Employees</option>
+          <option value={3}>Looking for Jobs</option>
+          <option value={2}>Looking for Employees</option>
         </select>
         <DataInput type="password" label="Password" id="signUpPass" />
         <Button text="Create Account" onClick={callSignUp} />
