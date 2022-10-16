@@ -7,7 +7,7 @@ const User = require("../models/users.model");
 const Job = require("../models/jobs.model");
 
 const getJobs = async (req, res) => {
-  const { employerID } = req.body;
+  const employerID = req.user._id;
   const query = { employerID: employerID };
   const jobs = await Job.find(query);
 
