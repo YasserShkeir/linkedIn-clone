@@ -77,7 +77,32 @@ const searchJobs = async (req, res) => {
   res.status(200).json({ message: await Job.aggregate(pipeline) });
 };
 
+const jobApply = async (req, res) => {
+  const { jobID } = req.body;
+  const job = await Job.findById(jobID);
+  const user = req.user;
+
+  try {
+    if (user.userType === 3) {
+      if (!job.applicants.includes(user._id)) {
+        job.applicants.push(user._id);
+        console.log(job.applicants.includes(user._id));
+        job.save();
+      } else {
+        res.status(400).json({
+          message: "Error: Already Applied to Job",
+        });
+      }
+    }
+  } catch (err) {
+    res.status(400).json({
+      message: err.message,
+    });
+  }
+};
+
 module.exports = {
   followEmployer,
   searchJobs,
+  jobApply,
 };
