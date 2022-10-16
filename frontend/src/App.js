@@ -6,13 +6,11 @@ import SignInPage from "./pages/signin/SignInPage";
 
 function App() {
   return (
-    <div>
-      <Layout>
-        <Routes>
-          <Route path={"/"} element={<SignInPage />} />
-        </Routes>
-      </Layout>
-    </div>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<SignInPage />} />
+      </Routes>
+    </Layout>
   );
 }
 
