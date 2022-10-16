@@ -6,6 +6,14 @@ const client = require("twilio")(accountSid, authToken);
 const User = require("../models/users.model");
 const Job = require("../models/jobs.model");
 
+const getJobs = async (req, res) => {
+  const { employerID } = req.body;
+  const query = { employerID: employerID };
+  const jobs = await Job.find(query);
+
+  res.status(200).json({ jobs: jobs });
+};
+
 const createJob = async (req, res) => {
   const { title, location, remote, easyApply, text, date } = req.body;
 
@@ -62,4 +70,5 @@ const getApplicants = async (req, res) => {
 module.exports = {
   createJob,
   getApplicants,
+  getJobs,
 };

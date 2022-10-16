@@ -6,6 +6,7 @@ const { deleteUser, showme } = require("../controllers/admin.controller");
 const {
   createJob,
   getApplicants,
+  getJobs,
 } = require("../controllers/employer.controller");
 const {
   followEmployer,
@@ -37,6 +38,7 @@ router.get(
   employerMiddleware,
   getApplicants
 );
+router.get("/getJobs", authMiddleware, employerMiddleware, getJobs);
 
 // Employee Functions
 router.post(
