@@ -7,10 +7,10 @@ const login = async (req, res) => {
 
   const user = await User.findOne({ email }).select("+password");
 
-  if (!user) return res.status(404).json({ message: "Invalid Credentials" });
+  if (!user) return res.status(404).json({ message: "Invalid Email" });
 
   const isMatch = bcrypt.compare(password, user.password);
-  if (!isMatch) return res.status(404).json({ message: "Invalid Credentials" });
+  if (!isMatch) return res.status(404).json({ message: "Invalid Password" });
 
   const token = jwt.sign(
     { email: user.email, name: user.name, userType: user.userType },

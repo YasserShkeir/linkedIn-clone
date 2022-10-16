@@ -3,7 +3,35 @@ import classes from "./SignInPage.module.css";
 import DataInput from "../../components/layout/dataInput/DataInput";
 import axios from "axios";
 
-const callSignIn = async () => {};
+const callSignIn = async () => {
+  let email = document.getElementById("signInEmail");
+  let password = document.getElementById("signInPass");
+  let task = {
+    email: email.value,
+    password: password.value,
+  };
+
+  const post = await axios.post("http://127.0.0.1:3000/auth/login", task, {
+    headers: {
+      "content-type": "application/json; charset=utf-8",
+    },
+  });
+
+  // const res = await fetch("http://127.0.0.1:3000/auth/login", {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-type": "application/json",
+  //   },
+  //   body: JSON.stringify(task),
+  // });
+
+  console.log(post.data);
+
+  // if (data.authorisation.token) {
+  //   localStorage.setItem("currUser", JSON.stringify(data.user));
+  //   localStorage.setItem("jwt", data.authorisation.token);
+  // }
+};
 
 const SignInPage = () => {
   return (
