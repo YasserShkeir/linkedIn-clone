@@ -1,0 +1,23 @@
+.main {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  box-sizing: border-box;
+}
+
+img {
+  width: 55%;
+  max-height: 60vh;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 35%;
+}
+
+.colLabel {
+  font-size: 3rem;
+  text-align: left;
+}
