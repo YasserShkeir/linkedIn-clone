@@ -33,7 +33,7 @@ const signup = async (req, res) => {
     user.userType = userType;
 
     await user.save();
-    res.json(user);
+    res.status(200).json(user);
   } catch (err) {
     res.status(400).json({
       message: err.message,
