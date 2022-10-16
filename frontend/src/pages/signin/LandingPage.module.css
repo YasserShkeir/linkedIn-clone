@@ -5,8 +5,8 @@
   box-sizing: border-box;
 }
 
-img {
-  width: 55%;
+.main img {
+  width: 50%;
   max-height: 60vh;
 }
 
@@ -14,10 +14,28 @@ img {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 35%;
+  width: 40%;
 }
 
 .colLabel {
   font-size: 3rem;
   text-align: left;
+}
+
+select {
+  height: 50px;
+  border-radius: 4px;
+  border: 1px solid black;
+  font-size: 16px;
+  padding: 4px 14px 0px 14px;
+  line-height: 1;
+  outline: none;
+  box-shadow: none;
+  transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  max-width: 400px;
+}
+
+select:focus {
+  border-color: #0a53e4;
+  box-shadow: 0 0 0 2px #79b1ff;
 }
