@@ -2,59 +2,78 @@ import classes from "./LandingPage.module.css";
 import DataInput from "../../components/dataInput/DataInput";
 import Button from "../../components/button/Button";
 import axios from "axios";
-
-const callSignIn = async () => {
-  let email = document.getElementById("signInEmail");
-  let password = document.getElementById("signInPass");
-  let task = {
-    email: email.value,
-    password: password.value,
-  };
-
-  const post = await axios.post("http://127.0.0.1:3000/auth/login", task, {
-    headers: {
-      "content-type": "application/json; charset=utf-8",
-    },
-  });
-
-  console.log(post.data);
-
-  if (post.data) {
-    localStorage.setItem("jwt", post.data);
-  }
-};
-
-const callSignUp = async () => {
-  let name = document.getElementById("signUpName");
-  let email = document.getElementById("signUpEmail");
-  let phone = document.getElementById("signUpPhone");
-  let userType = document.getElementById("signUpType");
-  let password = document.getElementById("signUpPass");
-
-  let task = {
-    name: name.value,
-    email: email.value,
-    phone: phone.value,
-    userType: parseInt(userType.value),
-    password: password.value,
-  };
-
-  const post = await axios.post("http://127.0.0.1:3000/auth/signup", task, {
-    headers: {
-      "content-type": "application/json; charset=utf-8",
-    },
-  });
-
-  console.log(post);
-
-  if (post.status === 200) {
-    alert("Account Created, Please Log In");
-  } else {
-    alert("Error");
-  }
-};
+import { Navigate, useNavigate } from "react-router-dom";
 
 const LandingInput = ({ state }) => {
+  let navigate = useNavigate();
+  const successRouter = (userType) => {
+    if (userType === 1) {
+      console.log("Going to Admin Portal...");
+      //   navigate("/admin");
+      //   <Navigate replace to="/admin" />;
+    }
+    if (userType === 2) {
+      console.log("Going to Employer Portal...");
+      //   navigate("/employer");
+      //   <Navigate replace to="/instructor" />;
+    }
+    if (userType === 3) {
+      console.log("Going to Employee Portal...");
+      //   navigate("/employee");
+      //   <Navigate replace to="/employee" />;
+    }
+  };
+
+  const callSignIn = async () => {
+    let email = document.getElementById("signInEmail");
+    let password = document.getElementById("signInPass");
+    let task = {
+      email: email.value,
+      password: password.value,
+    };
+
+    const post = await axios.post("http://127.0.0.1:3000/auth/login", task, {
+      headers: {
+        "content-type": "application/json; charset=utf-8",
+      },
+    });
+
+    if (post.data.token) {
+      localStorage.setItem("jwt", post.data.token);
+      successRouter(post.data.userType);
+    }
+  };
+
+  const callSignUp = async () => {
+    let name = document.getElementById("signUpName");
+    let email = document.getElementById("signUpEmail");
+    let phone = document.getElementById("signUpPhone");
+    let userType = document.getElementById("signUpType");
+    let password = document.getElementById("signUpPass");
+
+    let task = {
+      name: name.value,
+      email: email.value,
+      phone: phone.value,
+      userType: parseInt(userType.value),
+      password: password.value,
+    };
+
+    const post = await axios.post("http://127.0.0.1:3000/auth/signup", task, {
+      headers: {
+        "content-type": "application/json; charset=utf-8",
+      },
+    });
+
+    console.log(post);
+
+    if (post.status === 200) {
+      alert("Account Created, Please Log In");
+    } else {
+      alert("Error");
+    }
+  };
+
   if (!state) {
     return (
       <>
