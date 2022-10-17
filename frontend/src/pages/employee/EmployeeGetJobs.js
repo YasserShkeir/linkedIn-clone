@@ -1,7 +1,26 @@
 import Button from "../../components/button/Button";
 import classes from "./EmployeePage.module.css";
+import axios from "axios";
 
 const EmployeeGetJobs = ({ data }) => {
+  const followEmployer = async (id) => {
+    const data = {
+      employerID: id,
+    };
+
+    const post = await axios.post(
+      "http://127.0.0.1:3000/users/followEmployer",
+      data,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+        },
+      }
+    );
+
+    console.log(post.data);
+  };
+
   if (data.data) {
     return (
       <>
@@ -9,7 +28,13 @@ const EmployeeGetJobs = ({ data }) => {
           return (
             <div key={job._id} className={classes.jobCard}>
               <div>
-                <Button text="Follow Employer" style={{ fontSize: "18px" }} />
+                <Button
+                  text="Follow Employer"
+                  style={{ fontSize: "18px" }}
+                  onClick={async () => {
+                    followEmployer(await job.employerID);
+                  }}
+                />
                 <Button
                   text={job.easyApply ? "Easy Apply" : "Apply"}
                   style={{ fontSize: "18px" }}

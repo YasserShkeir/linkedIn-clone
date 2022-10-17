@@ -5,7 +5,7 @@ const Follow = require("../models/follows.model");
 const getEmpJobs = async (req, res) => {
   try {
     res.status(200).json({
-      jobs: await Job.find().select(["-applicants", "-employerID", "-__v"]),
+      jobs: await Job.find().select(["-applicants", "-__v"]),
     });
   } catch (err) {
     res.status(400).json({ message: "Error" });
@@ -15,7 +15,6 @@ const getEmpJobs = async (req, res) => {
 const followEmployer = async (req, res) => {
   const { employerID } = req.body;
   const employer = await User.findById(employerID);
-  console.log(employer.followedBy);
   const follower = await User.findById(req.user._id.toString());
 
   try {
