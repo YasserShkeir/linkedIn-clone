@@ -4,7 +4,9 @@ const Follow = require("../models/follows.model");
 
 const getEmpJobs = async (req, res) => {
   try {
-    res.status(200).json({ jobs: await Job.find() });
+    res.status(200).json({
+      jobs: await Job.find().select(["-applicants", "-employerID", "-__v"]),
+    });
   } catch (err) {
     res.status(400).json({ message: "Error" });
   }

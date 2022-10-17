@@ -1,4 +1,4 @@
-const GetJobs = ({ option, data }) => {
+const GetJobs = ({ data }) => {
   if (data.data) {
     return (
       <>

@@ -1,0 +1,10 @@
+.jobCard {
+  border: 1px solid black;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  padding: 0px 7%;
+  width: 100%;
+}
