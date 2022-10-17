@@ -12,6 +12,7 @@ const {
   followEmployer,
   searchJobs,
   jobApply,
+  getEmpJobs,
 } = require("../controllers/employee.controller");
 
 // Middlewares
@@ -49,5 +50,6 @@ router.post(
 );
 router.post("/searchJobs", authMiddleware, employeeMiddleware, searchJobs);
 router.post("/jobApply", authMiddleware, employeeMiddleware, jobApply);
+router.get("/getEmpJobs", authMiddleware, employeeMiddleware, getEmpJobs);
 
 module.exports = router;
