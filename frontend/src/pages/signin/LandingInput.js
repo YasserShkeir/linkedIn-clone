@@ -9,18 +9,18 @@ const LandingInput = ({ state }) => {
   const successRouter = (userType) => {
     if (userType === 1) {
       console.log("Going to Admin Portal...");
-      //   navigate("/admin");
-      //   <Navigate replace to="/admin" />;
+      navigate("/admin");
+      <Navigate replace to="/admin" />;
     }
     if (userType === 2) {
       console.log("Going to Employer Portal...");
-      //   navigate("/employer");
-      //   <Navigate replace to="/instructor" />;
+      navigate("/employer");
+      <Navigate replace to="/instructor" />;
     }
     if (userType === 3) {
       console.log("Going to Employee Portal...");
-      //   navigate("/employee");
-      //   <Navigate replace to="/employee" />;
+      navigate("/employee");
+      <Navigate replace to="/employee" />;
     }
   };
 

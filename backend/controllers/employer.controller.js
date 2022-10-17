@@ -36,7 +36,6 @@ const createJob = async (req, res) => {
 
     // employer.followedBy.forEach(async (element) => {
     //   let user = await User.findById(element);
-    //   console.log(user.name, user.phone);
     //   client.messages
     //     .create({
     //       from: `whatsapp:+14155238886`,

@@ -17,8 +17,6 @@ const EmployeeGetJobs = ({ data }) => {
         },
       }
     );
-
-    console.log(post.data);
   };
 
   const applyToJob = async (id) => {
