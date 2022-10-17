@@ -1,7 +1,7 @@
 import { useState } from "react";
 import classes from "./DataInput.module.css";
 
-const DataInput = ({ type = "text", label, id, res }) => {
+const DataInput = ({ type = "text", label = "", id, res }) => {
   const [value, setValue] = useState("");
 
   function handleChange(e) {

@@ -19,6 +19,7 @@ const createJob = async (req, res) => {
 
   try {
     const job = new Job();
+
     const employer = req.user;
 
     job.title = title;

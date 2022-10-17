@@ -65,8 +65,6 @@ const LandingInput = ({ state }) => {
       },
     });
 
-    console.log(post);
-
     if (post.status === 200) {
       alert("Account Created, Please Log In");
     } else {
