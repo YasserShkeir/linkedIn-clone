@@ -21,6 +21,22 @@ const EmployeeGetJobs = ({ data }) => {
     console.log(post.data);
   };
 
+  const applyToJob = async (id) => {
+    const data = {
+      jobID: id,
+    };
+    const post = await axios
+      .post("http://127.0.0.1:3000/users/jobApply", data, {
+        headers: {
+          Accept: "*/*",
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+        },
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
+  };
+
   if (data.data) {
     return (
       <>
@@ -38,6 +54,9 @@ const EmployeeGetJobs = ({ data }) => {
                 <Button
                   text={job.easyApply ? "Easy Apply" : "Apply"}
                   style={{ fontSize: "18px" }}
+                  onClick={async () => {
+                    applyToJob(await job._id);
+                  }}
                 />
               </div>
               <div>
@@ -48,8 +67,6 @@ const EmployeeGetJobs = ({ data }) => {
                   Location: {job.location} | Due by: {job.date.substring(0, 10)}
                 </h4>
                 <h5>
-                  <b>Requirements:</b>
-                  <br />
                   <br />
                   {job.text}
                 </h5>

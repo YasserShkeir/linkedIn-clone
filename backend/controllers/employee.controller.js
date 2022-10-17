@@ -95,7 +95,6 @@ const jobApply = async (req, res) => {
     if (user.userType === 3) {
       if (!job.applicants.includes(user._id)) {
         job.applicants.push(user._id);
-        console.log(job.applicants.includes(user._id));
         job.save();
       } else {
         res.status(400).json({
@@ -106,6 +105,7 @@ const jobApply = async (req, res) => {
   } catch (err) {
     res.status(400).json({
       message: err.message,
+      test: job,
     });
   }
 };
