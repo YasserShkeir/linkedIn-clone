@@ -2,6 +2,14 @@ const User = require("../models/users.model");
 const Job = require("../models/jobs.model");
 const Follow = require("../models/follows.model");
 
+const getEmpJobs = async (req, res) => {
+  try {
+    res.status(200).json({ jobs: await Job.find() });
+  } catch (err) {
+    res.status(400).json({ message: "Error" });
+  }
+};
+
 const followEmployer = async (req, res) => {
   const { employerID } = req.body;
   const employer = await User.findById(employerID);
@@ -105,4 +113,5 @@ module.exports = {
   followEmployer,
   searchJobs,
   jobApply,
+  getEmpJobs,
 };
